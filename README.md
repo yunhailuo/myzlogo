@@ -1,7 +1,7 @@
-# Vue 3 + Vite
+# MYZL Logo environment
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a toy environment for [Logo programming language](https://el.media.mit.edu/logo-foundation/what_is_logo/index.html). It's built for my grade 1-2 kids. It's not a full implementation of Logo but designed to match the syntax kids said to have at their school.
 
-## Recommended IDE Setup
+# Project
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project is initiated and templated using Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
