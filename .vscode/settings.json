@@ -1,0 +1,8 @@
+{
+    "antlr4.generation": {
+        "mode": "external",
+        "language": "JavaScript",
+        "listeners": true,
+        "visitors": false
+    }
+}
