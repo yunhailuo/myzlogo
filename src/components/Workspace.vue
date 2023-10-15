@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onBeforeUnmount, onMounted } from 'vue'
 import { Turtle } from '../lib/turtle'
+import parse from '../lib/parser/parse'
 
 const workspace = ref(null)
 const resizeObserver = ref(null)
@@ -27,7 +28,7 @@ function penDown(e) {
     turtle.x = e.offsetX
     turtle.y = e.offsetY
     turtle.penDown = true
-    turtle.showTurtle()
+    turtle.drawTurtle()
 }
 
 function penUp(e) {
@@ -35,10 +36,10 @@ function penUp(e) {
 }
 
 function processAllCmds() {
+    turtle.clean()
     turtle.resetTurtle()
-    turtle.processOneLineCmd("clear")
-    logoCmd.value.split("\n").forEach((cmd) => turtle.processOneLineCmd(cmd))
-    turtle.showTurtle()
+    parse(logoCmd.value, turtle)
+    turtle.drawTurtle()
 }
 
 onMounted(() => {
@@ -51,12 +52,14 @@ onMounted(() => {
             cmdWidth.value = 600
         }
         turtle.resetTurtle()
+        turtle.drawTurtle()
     })
     resizeObserver.value.observe(workspace.value)
     canvasCtx.value = logoCanvas.value.getContext('2d')
     turtle.canvasCtx = canvasCtx.value
     turtle.resetTurtle()
-    logoCmd.value = "bk 90\nrt 90\nfd 90\nlt 90\nfd 90\npu\nfd 90\npd\nfd 90\nfd 90\nbk 30\npe\nbk 60\npd\nbk 30"
+    turtle.drawTurtle()
+    logoCmd.value = "bk 45+45\nrt 100 - 10\nfd 9*\t10\nlt 180  /2\nfd 90\n\npu\nfd 90\npd\n\nfd 90 fd 90 bk 30\n\npe\nbk 60\nppt\n\nbk 30"
 })
 
 onBeforeUnmount(() => {
