@@ -4,5 +4,10 @@
         "language": "JavaScript",
         "listeners": true,
         "visitors": false
-    }
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ]
 }

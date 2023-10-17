@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/myzlogo/',
+  base: "/myzlogo/",
   plugins: [vue()],
   // TODO: remove this workaround when https://github.com/antlr/antlr4/pull/4411 gets released.
   resolve: {
