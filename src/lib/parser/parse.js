@@ -1,7 +1,7 @@
-import antlr4 from 'antlr4';
-import UCBLogoLexer from './UCBLogoLexer.js';
-import UCBLogoParser from './UCBLogoParser.js';
-import UCBLogoListener from './UCBLogoListener.js';
+import UCBLogoLexer from "./UCBLogoLexer.js";
+import UCBLogoListener from "./UCBLogoListener.js";
+import UCBLogoParser from "./UCBLogoParser.js";
+import antlr4 from "antlr4";
 
 class ProcedureResolver extends UCBLogoListener {
     constructor(turtle) {
@@ -16,10 +16,10 @@ class ProcedureResolver extends UCBLogoListener {
     exitProcedure_call(ctx) {
         const args = Object.values(ctx.expressions().expression()).map((e) => e.value);
         const functionName = ctx.NAME().getText();
-        if (typeof this.turtle[functionName] === 'function') {
+        if (typeof this.turtle[functionName] === "function") {
             this.turtle[functionName](args);
         } else {
-            console.log(`Procedure "${functionName}" not yet implemented with`, args)
+            console.log(`Procedure "${functionName}" not yet implemented with`, args);
         }
     }
 

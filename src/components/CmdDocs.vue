@@ -1,13 +1,18 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const isOpened = ref(false)
+const isOpened = ref(false);
 </script>
 
 <template>
-    <div class="sidebar" :class="isOpened ? 'open' : ''">
-        <div @click="isOpened = !isOpened">&lt; &gt;</div>
+  <div
+    class="sidebar"
+    :class="isOpened ? 'open' : ''"
+  >
+    <div @click="isOpened = !isOpened">
+      &lt; &gt;
     </div>
+  </div>
 </template>
 
 <style scoped>

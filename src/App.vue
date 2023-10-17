@@ -1,12 +1,12 @@
 <script setup>
-import CmdDocs from './components/CmdDocs.vue'
-import Workspace from './components/Workspace.vue'
+import CmdDocs from "./components/CmdDocs.vue";
+import WorkSpace from "./components/WorkSpace.vue";
 </script>
 
 <template>
   <div class="container">
     <CmdDocs />
-    <Workspace />
+    <WorkSpace />
   </div>
 </template>
 
