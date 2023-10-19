@@ -1,23 +1,21 @@
 <script setup>
-import CmdDocs from "./components/CmdDocs.vue";
+import TitleBar from "./components/TitleBar.vue";
 import WorkSpace from "./components/WorkSpace.vue";
 </script>
 
 <template>
-  <div class="container">
-    <CmdDocs />
-    <WorkSpace />
-  </div>
+    <div class="app">
+        <TitleBar />
+        <WorkSpace />
+    </div>
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: normal;
-  align-items: normal;
-  align-content: normal;
-  width: 100%;
+.app {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 0px;
+    width: 100%;
 }
 </style>
