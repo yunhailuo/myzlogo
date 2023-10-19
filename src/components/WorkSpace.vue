@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import { Turtle } from "../lib/turtle";
 import parse from "../lib/parser/parse";
+import IconButton from "./IconButton.vue";
 import IoDownloadIcon from "./IoDownloadIcon.vue";
 import IoCodeDownloadIcon from "./IoCodeDownloadIcon.vue";
 
@@ -41,12 +42,12 @@ function downloadGraph() {
 }
 
 function downloadCode() {
-    const codeBlob = new Blob([logoCmd.value], {type: "text/plain"});
+    const codeBlob = new Blob([logoCmd.value], { type: "text/plain" });
     const downloadLink = document.createElement("a");
     downloadLink.download = "logo_code.txt";
     downloadLink.href = URL.createObjectURL(codeBlob);
     downloadLink.click();
-    URL.revokeObjectURL(downloadLink.href)
+    URL.revokeObjectURL(downloadLink.href);
 }
 
 onMounted(() => {
@@ -61,8 +62,17 @@ onMounted(() => {
 <template>
     <div class="appmain">
         <div class="sidebar">
-            <IoDownloadIcon @clicked="downloadGraph" />
-            <IoCodeDownloadIcon @clicked="downloadCode" />
+            <IconButton
+                @clicked="downloadGraph"
+                :icon="IoDownloadIcon"
+                tooltip="Download graph"
+            />
+            <IconButton
+                @clicked="downloadCode"
+                :icon="IoCodeDownloadIcon"
+                tooltip="Download LOGO code
+            "
+            />
         </div>
         <div ref="workspace" class="workspace">
             <canvas ref="logoCanvas" class="canvas" height="900" width="1200" />
