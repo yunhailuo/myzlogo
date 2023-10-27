@@ -531,7 +531,7 @@ array_
  ;
 
 list_
- : '[' ( ~( '[' | ']' ) | list_ )* ']'
+ : OPEN_LIST ( WORD | list_ )* CLOSE_LIST
  ;
 
 TO    : T O;
@@ -539,7 +539,7 @@ END   : E N D;
 MACRO : '.' M A C R O;
 
 WORD
- : {this.listDepth > 0}?  ~[ \t\r\n[\];] ( ~[ \t\r\n\];~] | LINE_CONTINUATION | '\\' ( [ \t[\]();~] | LINE_BREAK ) )*
+ : {this.listDepth > 0}?  ~[ \t\r\n[\];] ( ~[ \t\r\n[\];~] | LINE_CONTINUATION | '\\' ( [ \t[\]();~] | LINE_BREAK ) )*
  | {this.arrayDepth > 0}? ~[ \t\r\n{};]   ( ~[ \t\r\n};~]  | LINE_CONTINUATION | '\\' ( [ \t{}();~]   | LINE_BREAK ) )*
  ;
 

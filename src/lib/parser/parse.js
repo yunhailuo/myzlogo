@@ -27,6 +27,24 @@ class ProcedureResolver extends UCBLogoListener {
         ctx.value = ctx.expression(0).value;
     }
 
+    exitListExpression(ctx) {
+        ctx.value = ctx.children[0].value
+    }
+    exitList_(ctx) {
+        // repeat 4 [fd 90 [fd 90 rt 90] rt 90]
+        ctx.value = ctx.children.slice(1, -1).map(
+            (child) => child.list_ ? child.value : child.getText()
+        )
+    }
+
+    exitWordExpression(ctx) {
+        ctx.value = ctx.WORD().getText().slice(1);
+    }
+
+    exitQuotedWordExpression(ctx) {
+        ctx.value = ctx.QUOTED_WORD().getText().slice(1);
+    }
+
     exitNumberExpression(ctx) {
         ctx.value = parseFloat(ctx.NUMBER().getText());
     }
