@@ -92,16 +92,12 @@ export class Turtle {
         this.x = x1;
         this.y = y1;
     }
-    fd = this.forward;
 
     back(distance) { this.forward(-distance); }
-    bk = this.back;
 
     left(degree) { this.degree += Number(degree); }
-    lt = this.left;
 
     right(degree) { this.degree -= Number(degree); }
-    rt = this.right;
 
     setpos(pos) { this.setxy(...pos); }
 
@@ -115,7 +111,6 @@ export class Turtle {
     sety(y) { this.y = y; }
 
     setheading(degree) { this.degree = Number(degree); }
-    seth = this.setheading;
 
     home() {
         this.setpos([0, 0]);
@@ -125,10 +120,8 @@ export class Turtle {
     /* TURTLE AND WINDOW CONTROL */
 
     showturtle() { this.visible = true; }
-    st = this.showturtle;
 
     hideturtle() { this.visible = false; }
-    ht = this.hideturtle;
 
     clean() {
         this.canvasCtx.clearRect(
@@ -147,14 +140,10 @@ export class Turtle {
     /* PEN AND BACKGROUND CONTROL */
 
     pendown() { this.penPos = "DOWN"; }
-    pd = this.pendown;
 
     penup() { this.penPos = "UP"; }
-    pu = this.penup;
 
     penpaint() { this.penMode = "PAINT"; }
-    ppt = this.penpaint;
 
     penerase() { this.penMode = "ERASE"; }
-    pe = this.penerase;
 }

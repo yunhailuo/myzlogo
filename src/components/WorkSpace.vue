@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { Turtle } from "../lib/turtle";
+import { LogoPrimitiveProcedures } from "../lib/parser/logo-primitive-procedures";
 import parse from "../lib/parser/parse";
 import IconButton from "./IconButton.vue";
 import IoDownloadIcon from "./IoDownloadIcon.vue";
@@ -26,11 +27,14 @@ function wrappedConsoleLog() {
 console.log = wrappedConsoleLog;
 
 const turtle = new Turtle();
+const logoPrimProc = new LogoPrimitiveProcedures(turtle);
 
 function processAllCmds() {
     turtle.clean();
     turtle.resetTurtle();
-    parse(logoCmd.value, turtle);
+    const logoJs = parse(logoCmd.value);
+    console.log(logoJs.join("\n"));
+    Function("logo", `"use strict";${logoJs.join("\n")}`)(logoPrimProc);
     turtle.drawTurtle();
 }
 
@@ -54,8 +58,30 @@ onMounted(() => {
     turtle.canvasCtx = logoCanvas.value.getContext("2d");
     turtle.resetTurtle();
     turtle.drawTurtle();
-    logoCmd.value =
-        "bk 45+45\nrt 100 - 10\nfd 9*\t10\nlt 180  /2\nfd 90\n\npu\nfd 90\npd\n\nfd 90 fd 90 bk 30\n\npe\nbk 60\nppt\n\nbk 30";
+    logoCmd.value = `bk 45+45
+        rt 100 - 10
+        fd 9*\t10
+        lt 180  /2
+        fd (sum 30 30 30)
+
+        pu
+        fd 90
+        pd
+
+        fd 90 fd 90 bk 30
+
+        pe
+        bk 60
+        ppt
+
+        bk 30
+
+        RT 45
+        repeat 4 [fd 90 rt 90]
+
+        lt 105 fd 90
+        lt 120 fd product 90 sin 30
+        lt 90 fd product cos 30 90`;
 });
 </script>
 
