@@ -58,7 +58,7 @@ class ProcedureResolver extends UCBLogoListener {
     }
 
     exitUnaryMinusExpression(ctx) {
-        ctx.js = `-(${ctx.expression(0).js})`;
+        ctx.js = `(-${ctx.expression(0).js})`;
     }
 
     exitProcedureCallExtraInput(ctx) {
@@ -108,52 +108,52 @@ class ProcedureResolver extends UCBLogoListener {
 
     exitMultiplyExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) * (${bJs})`;
+        ctx.js = `(${aJs} * ${bJs})`;
     }
 
     exitDivideExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) / (${bJs})`;
+        ctx.js = `(${aJs} / ${bJs})`;
     }
 
     exitAdditionExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) + (${bJs})`;
+        ctx.js = `(${aJs} + ${bJs})`;
     }
 
     exitSubtractionExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) - (${bJs})`;
+        ctx.js = `(${aJs} - ${bJs})`;
     }
 
     exitLessThanExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) < (${bJs})`;
+        ctx.js = `(${aJs} < ${bJs})`;
     }
 
     exitGreaterThanExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) > (${bJs})`;
+        ctx.js = `(${aJs} > ${bJs})`;
     }
 
     exitLessThanEqualsExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) <= (${bJs})`;
+        ctx.js = `(${aJs} <= ${bJs})`;
     }
 
     exitGreaterThanEqualsExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) >= (${bJs})`;
+        ctx.js = `(${aJs} >= ${bJs})`;
     }
 
     exitEqualsExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) == (${bJs})`;
+        ctx.js = `(${aJs} == ${bJs})`;
     }
 
     exitNotEqualsExpressionExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs}) != (${bJs})`;
+        ctx.js = `(${aJs} != ${bJs})`;
     }
 }
 
