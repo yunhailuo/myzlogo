@@ -9,7 +9,7 @@ export class Turtle {
         this.pendown();
         this.penpaint();
         this.showturtle();
-        this.color = "#ff0000";
+        this.color = "#1520a6";
         this.width = 3;
     }
 
