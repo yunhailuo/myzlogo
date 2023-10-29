@@ -1,22 +1,12 @@
 ---
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
-name: Lint Code Base
-
-#
-# Documentation:
-# https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
-#
+name: CI
 
 #############################
 # Start the job on all push #
 #############################
 on:
   push:
-    branches-ignore: [main]
+    branches-ignore: [main]  # main CI will be triggered via CD
   pull_request:
     branches: [master, main]
   workflow_call:
@@ -25,7 +15,35 @@ on:
 # Set the Job #
 ###############
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run test
+
+  #################################
+  #################################
+  ## Super Linter GitHub Actions ##
+  #################################
+  #################################
+
+  #
+  # Documentation:
+  # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+  #
+
+  lint:
     # Name the Job
     name: Lint Code Base
     # Set the agent to run on

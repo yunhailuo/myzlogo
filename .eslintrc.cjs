@@ -11,7 +11,7 @@ module.exports = {
     },
     rules: {
         // override/add rules settings here, such as:
-        quotes: ["error", "double"],
+        quotes: ["error", "double", { "avoidEscape": true }],
         semi: ["error", "always"],
         "sort-imports": "error",
         "vue/no-unused-vars": "error"

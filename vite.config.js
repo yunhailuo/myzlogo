@@ -10,5 +10,10 @@ export default defineConfig({
     alias: {
       "antlr4": "node_modules/antlr4/dist/antlr4.web.mjs"
     }
+  },
+  test: {
+    alias: {
+      "antlr4": "antlr4"
+    }
   }
 });
