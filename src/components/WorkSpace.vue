@@ -50,6 +50,7 @@ onMounted(() => {
         turtleCanvas.value.getContext("2d"),
     ];
     logoCmd.value =
+        "cs " +
         "bk 45+45\n" +
         "rt 100 - 10\n" +
         "fd 9*\t10\n" +
@@ -73,7 +74,9 @@ onMounted(() => {
         "\n" +
         "lt 105 fd 90\n" +
         "lt 120 fd product 90 sin 30\n" +
-        "lt 90 fd product cos 30 90";
+        "lt 90 fd product cos 30 90\n" +
+        "seth 180-22.5\n" +
+        "arc ((90+22.5)/180)*3.14 (cos 30)*90";
 });
 </script>
 

@@ -325,6 +325,22 @@ export default class UCBLogoRunner {
         this.setheading(0);
     }
 
+    arc(angle, radius) {
+        if (this.#penPos == "DOWN") {
+            let x0 = this.#turtleX + Math.sin(this.#radian) * radius;
+            let y0 = this.#turtleY + Math.cos(this.#radian) * radius;
+            let x1 = this.#turtleX + Math.sin(this.#radian - angle) * radius;
+            let y1 = this.#turtleY + Math.cos(this.#radian - angle) * radius;
+            this.graphCanvas.stroke(
+                new Path2D(
+                    `M${x0} ${y0}A${radius} ${radius} 0 ${
+                        +(angle >= Math.PI)
+                    } 1 ${x1} ${y1}`
+                )
+            );
+        }
+    }
+
     /* TURTLE AND WINDOW CONTROL */
 
     showturtle() {
