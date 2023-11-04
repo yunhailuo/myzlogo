@@ -315,7 +315,7 @@ export default class UCBLogoRunner {
 
     setheading(degrees) {
         this.#eraseTurtle();
-        this.#turtleHeadings = Number(degrees);
+        this.#turtleHeadings = -Number(degrees);
         this.#drawTurtle();
     }
     seth = this.setheading;
