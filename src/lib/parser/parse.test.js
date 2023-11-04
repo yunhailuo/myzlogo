@@ -69,7 +69,7 @@ test.concurrent.each([
         ===========================
     */
     // REPEAT num instructionlist
-    ["repeat 4 [forward 90 right 90]", ['for (let i = 0; i < 4; i++) { logo["forward"](90);\nlogo["right"](90); }']]
+    ["repeat 4 [forward 90 right 90]", ['logo["repeat"](4, "forward 90 right 90");']]
 ])("parse(%s) -> %s", (logo, js) => {
     expect(parse(logo)).toStrictEqual(js);
 });

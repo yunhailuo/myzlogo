@@ -11,11 +11,17 @@ class ProcedureResolver extends UCBLogoListener {
 
     specialPrimProcToJs = {
         /* CONTROL STRUCTURES */
+        run(ctx) {
+            let [{ rawLogo: instructionList }] = ctx.expression();
+            return `logo["run"]("${instructionList}");`;
+        },
+        runresult(ctx) {
+            let [{ rawLogo: instructionList }] = ctx.expression();
+            return `logo["runresult"]("${instructionList}");`;
+        },
         repeat(ctx) {
-            let num, instructionList;
-            [{ js: num }, { rawLogo: instructionList }] = ctx.expression();
-            const logoJs = parse(instructionList);
-            return `for (let i = 0; i < ${num}; i++) { ${logoJs.join("\n")} }`;
+            let [{ js: num }, { rawLogo: instructionList }] = ctx.expression();
+            return `logo["repeat"](${num}, "${instructionList}");`;
         },
     };
     defaultPrimProcToJs = {
@@ -70,7 +76,7 @@ class ProcedureResolver extends UCBLogoListener {
     exitProcedureCallExpression(ctx) {
         /* Since this is part of an expression, trailing semicolon should be
            removed if exists. */
-           ctx.js = ctx.procedure_call().js.replace(/;$/, "");
+        ctx.js = ctx.procedure_call().js.replace(/;$/, "");
     }
 
     exitParensExpression(ctx) {

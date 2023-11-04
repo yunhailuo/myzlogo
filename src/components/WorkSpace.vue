@@ -1,41 +1,31 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { Turtle } from "../lib/turtle";
-import { LogoPrimitiveProcedures } from "../lib/parser/logo-primitive-procedures";
-import parse from "../lib/parser/parse";
+import UCBLogoRunner from "../lib/UCBLogoRunner";
 import IconButton from "./IconButton.vue";
 import IoDownloadIcon from "./IoDownloadIcon.vue";
 import IoCodeDownloadIcon from "./IoCodeDownloadIcon.vue";
 
 const workspace = ref(null);
 const logoCanvas = ref(null);
+const turtleCanvas = ref(null);
 const logoCmd = ref("");
 const consoleLog = ref("");
 
-const buildinConsoleError = console.error;
-function wrappedConsoleError() {
-    buildinConsoleError(...arguments);
-    consoleLog.value += `\n${[...arguments].join(" ")}`;
-}
-console.error = wrappedConsoleError;
+const logger = {
+    error() {
+        console.error(...arguments);
+        consoleLog.value += `\n${[...arguments].join(" ")}`;
+    },
+    log() {
+        console.log(...arguments);
+        consoleLog.value += `\n${[...arguments].join(" ")}`;
+    },
+};
 
-const buildinConsoleLog = console.log;
-function wrappedConsoleLog() {
-    buildinConsoleLog(...arguments);
-    consoleLog.value += `\n${[...arguments].join(" ")}`;
-}
-console.log = wrappedConsoleLog;
-
-const turtle = new Turtle();
-const logoPrimProc = new LogoPrimitiveProcedures(turtle);
+const logoRunner = new UCBLogoRunner(null, null, logger);
 
 function processAllCmds() {
-    turtle.clean();
-    turtle.resetTurtle();
-    const logoJs = parse(logoCmd.value);
-    console.log(logoJs.join("\n"));
-    Function("logo", `"use strict";${logoJs.join("\n")}`)(logoPrimProc);
-    turtle.drawTurtle();
+    logoRunner.runresult(logoCmd.value);
 }
 
 function downloadGraph() {
@@ -55,33 +45,35 @@ function downloadCode() {
 }
 
 onMounted(() => {
-    turtle.canvasCtx = logoCanvas.value.getContext("2d");
-    turtle.resetTurtle();
-    turtle.drawTurtle();
-    logoCmd.value = `bk 45+45
-        rt 100 - 10
-        fd 9*\t10
-        lt 180  /2
-        fd (sum 30 30 30)
-
-        pu
-        fd 90
-        pd
-
-        fd 90 fd 90 bk 30
-
-        pe
-        bk 60
-        ppt
-
-        bk 30
-
-        RT 45
-        repeat 4 [fd 90 rt 90]
-
-        lt 105 fd 90
-        lt 120 fd product 90 sin 30
-        lt 90 fd product cos 30 90`;
+    logoRunner.canvases = [
+        logoCanvas.value.getContext("2d"),
+        turtleCanvas.value.getContext("2d"),
+    ];
+    logoCmd.value =
+        "bk 45+45\n" +
+        "rt 100 - 10\n" +
+        "fd 9*\t10\n" +
+        "lt 180  /2\n" +
+        "fd (sum 30 30 30)\n" +
+        "\n" +
+        "pu\n" +
+        "forward 90\n" +
+        "pd\n" +
+        "\n" +
+        "fd 90 fd 90 bk 30\n" +
+        "\n" +
+        "pe\n" +
+        "bk 60\n" +
+        "ppt\n" +
+        "\n" +
+        "bk 30\n" +
+        "\n" +
+        "RT 45\n" +
+        "repeat 4 [fd 90 rt 90]\n" +
+        "\n" +
+        "lt 105 fd 90\n" +
+        "lt 120 fd product 90 sin 30\n" +
+        "lt 90 fd product cos 30 90";
 });
 </script>
 
@@ -102,6 +94,12 @@ onMounted(() => {
         </div>
         <div ref="workspace" class="workspace">
             <canvas ref="logoCanvas" class="canvas" height="900" width="1200" />
+            <canvas
+                ref="turtleCanvas"
+                class="canvas turtlecover"
+                height="900"
+                width="1200"
+            />
             <textarea
                 v-model="logoCmd"
                 class="commands"
@@ -153,6 +151,16 @@ onMounted(() => {
     align-content: normal;
     width: 100%;
     overflow-y: auto;
+    position: relative;
+}
+
+.turtlecover,
+.canvas.turtlecover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    z-index: 1;
 }
 
 .canvas {
@@ -164,6 +172,7 @@ onMounted(() => {
     order: 0;
     background: white;
     max-width: min(100%, 1200px);
+    z-index: 0;
 }
 
 .commands {
