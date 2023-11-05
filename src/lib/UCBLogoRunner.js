@@ -39,6 +39,11 @@ export default class UCBLogoRunner {
     #turtleX;
     #turtleY;
     #turtleHeadings;
+    get #radian() {
+        // Adjust for Logo headings which are measured in degrees clockwise
+        // from the positive Y axis.
+        return (this.#turtleHeadings + 180) * (Math.PI / 180);
+    }
     #turtleVisible;
     #penPos;
     #penMode;
@@ -70,12 +75,6 @@ export default class UCBLogoRunner {
             "L8 -6L5 -3L7 1L6 5L9 8" +
             "L7 9L4 7L1 10L2 14 Z"
     );
-
-    get #radian() {
-        // Adjust for Logo headings which are measured in degrees clockwise
-        // from the positive Y axis.
-        return (this.#turtleHeadings + 180) * (Math.PI / 180);
-    }
 
     #resetTurtle() {
         this.home();
@@ -258,7 +257,7 @@ export default class UCBLogoRunner {
         }
     }
 
-    /* TURTLE MOTION */
+    /* GRAPHICS - TURTLE MOTION */
 
     forward(dist) {
         this.#eraseTurtle();
@@ -333,15 +332,35 @@ export default class UCBLogoRunner {
             let y1 = this.#turtleY + Math.cos(this.#radian - angle) * radius;
             this.graphCanvas.stroke(
                 new Path2D(
-                    `M${x0} ${y0}A${radius} ${radius} 0 ${
-                        +(angle >= Math.PI)
-                    } 1 ${x1} ${y1}`
+                    `M${x0} ${y0}A${radius} ${radius} 0 ${+(
+                        angle >= Math.PI
+                    )} 1 ${x1} ${y1}`
                 )
             );
         }
     }
 
-    /* TURTLE AND WINDOW CONTROL */
+    /* GRAPHICS - TURTLE MOTION QUERIES */
+
+    pos() {
+        return [this.#turtleX, this.#turtleY];
+    }
+
+    heading() {
+        return this.#turtleHeadings;
+    }
+
+    towards(pos) {
+        let [x, y] = pos;
+        return (
+            270 -
+            180 * (x > 0) -
+            Math.atan((y - this.#turtleY) / (x - this.#turtleX)) *
+                (180 / Math.PI)
+        );
+    }
+
+    /* GRAPHICS - TURTLE AND WINDOW CONTROL */
 
     showturtle() {
         this.#eraseTurtle();
@@ -377,7 +396,13 @@ export default class UCBLogoRunner {
     }
     cs = this.clearscreen;
 
-    /* PEN AND BACKGROUND CONTROL */
+    /* GRAPHICS - TURTLE AND WINDOW QUERIES */
+
+    shownp() {
+        return this.#turtleVisible;
+    }
+
+    /* GRAPHICS - PEN AND BACKGROUND CONTROL */
 
     pendown() {
         this.#penPos = "DOWN";
@@ -407,6 +432,24 @@ export default class UCBLogoRunner {
 
     setpensize(size) {
         this.penSize = size;
+    }
+
+    /* GRAPHICS - PEN QUERIES */
+    pendownp() {
+        return this.#penPos == "DOWN";
+    }
+
+    penmode() {
+        return this.#penMode;
+    }
+
+    pencolor() {
+        return this.#penColor;
+    }
+    pc = this.pencolor;
+
+    pensize() {
+        return this.#penSize;
     }
 
     /* CONTROL STRUCTURES */
