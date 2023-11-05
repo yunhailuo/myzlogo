@@ -76,7 +76,7 @@ onMounted(() => {
         "lt 120 fd product 90 sin 30\n" +
         "lt 90 fd product cos 30 90\n" +
         "seth 180-22.5\n" +
-        "arc ((90+22.5)/180)*3.14 (cos 30)*90";
+        "arc (90+22.5)/180*3.14 (cos 30) * 90";
 });
 </script>
 

@@ -503,27 +503,20 @@ locals[int n = 0]      // a counter to keep track of how many expressions we've 
  ;
 
 expression
- : '-' expression                #unaryMinusExpression
- | procedure_call_extra_input    #procedureCallExtraInput
- | procedure_call                #procedureCallExpression
- | '(' expression ')'            #parensExpression
- | array_                        #arrayExpression
- | list_                         #listExpression
- | WORD                          #wordExpression
- | QUOTED_WORD                   #quotedWordExpression
- | NUMBER                        #numberExpression
- | VARIABLE                      #variableExpression
- | NAME                          #nameExpression
- | expression '*' expression     #multiplyExpression
- | expression '/' expression     #divideExpression
- | expression '+' expression     #additionExpression
- | expression '-' expression     #subtractionExpression
- | expression '<' expression     #lessThanExpression
- | expression '>' expression     #greaterThanExpression
- | expression '<=' expression    #lessThanEqualsExpression
- | expression '>=' expression    #greaterThanEqualsExpression
- | expression '=' expression     #equalsExpression
- | expression '<>' expression    #notEqualsExpressionExpression
+ : '-' expression                                         #unaryMinusExpression
+ | procedure_call_extra_input                             #procedureCallExtraInput
+ | procedure_call                                         #procedureCallExpression
+ | '(' expression ')'                                     #parensExpression
+ | array_                                                 #arrayExpression
+ | list_                                                  #listExpression
+ | WORD                                                   #wordExpression
+ | QUOTED_WORD                                            #quotedWordExpression
+ | NUMBER                                                 #numberExpression
+ | VARIABLE                                               #variableExpression
+ | NAME                                                   #nameExpression
+ | expression op=('*'|'/') expression                     #mulDivExpression
+ | expression op=('+'|'-') expression                     #addSubExpression
+ | expression op=('<'|'>'|'<='|'>='|'='|'<>') expression  #comparisonExpression
  ;
 
 array_

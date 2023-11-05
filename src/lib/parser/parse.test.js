@@ -43,25 +43,18 @@ test.concurrent.each([
     ["show 1", ['logo["show"](1);']],
     // variableExpression
     // nameExpression
-    // multiplyExpression
-    ["show 1* 2", ['logo["show"]((1 * 2));']],
-    // divideExpression
-    ["show 1/2", ['logo["show"]((1 / 2));']],
-    // additionExpression
-    ["show 1+2", ['logo["show"]((1 + 2));']],
-    // subtractionExpression
-    ["show 1-2", ['logo["show"]((1 - 2));']],
-    // lessThanExpression
+    // mulDivExpression
+    ["show 1* 2/3", ['logo["show"](((1 * 2) / 3));']],
+    ["show 1/2*3", ['logo["show"](((1 / 2) * 3));']],
+    // addSubExpression
+    ["show 1+2-3", ['logo["show"](((1 + 2) - 3));']],
+    ["show 1-2+3", ['logo["show"](((1 - 2) + 3));']],
+    // comparisonExpression
     ["show 1<2", ['logo["show"]((1 < 2));']],
-    // greaterThanExpression
     ["show 1>2", ['logo["show"]((1 > 2));']],
-    // lessThanEqualsExpression
     ["show 1<=2", ['logo["show"]((1 <= 2));']],
-    // greaterThanEqualsExpression
     ["show 1>=2", ['logo["show"]((1 >= 2));']],
-    // equalsExpression
     ["show 1=2", ['logo["show"]((1 == 2));']],
-    // notEqualsExpressionExpression
     ["show 1<>2", ['logo["show"]((1 != 2));']],
 
     /*

@@ -122,30 +122,12 @@ export default class UCBLogoListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by UCBLogoParser#notEqualsExpressionExpression.
-	enterNotEqualsExpressionExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#notEqualsExpressionExpression.
-	exitNotEqualsExpressionExpression(ctx) {
-	}
-
-
 	// Enter a parse tree produced by UCBLogoParser#arrayExpression.
 	enterArrayExpression(ctx) {
 	}
 
 	// Exit a parse tree produced by UCBLogoParser#arrayExpression.
 	exitArrayExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#additionExpression.
-	enterAdditionExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#additionExpression.
-	exitAdditionExpression(ctx) {
 	}
 
 
@@ -176,21 +158,12 @@ export default class UCBLogoListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by UCBLogoParser#multiplyExpression.
-	enterMultiplyExpression(ctx) {
+	// Enter a parse tree produced by UCBLogoParser#comparisonExpression.
+	enterComparisonExpression(ctx) {
 	}
 
-	// Exit a parse tree produced by UCBLogoParser#multiplyExpression.
-	exitMultiplyExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#greaterThanExpression.
-	enterGreaterThanExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#greaterThanExpression.
-	exitGreaterThanExpression(ctx) {
+	// Exit a parse tree produced by UCBLogoParser#comparisonExpression.
+	exitComparisonExpression(ctx) {
 	}
 
 
@@ -200,33 +173,6 @@ export default class UCBLogoListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by UCBLogoParser#variableExpression.
 	exitVariableExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#divideExpression.
-	enterDivideExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#divideExpression.
-	exitDivideExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#lessThanEqualsExpression.
-	enterLessThanEqualsExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#lessThanEqualsExpression.
-	exitLessThanEqualsExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#greaterThanEqualsExpression.
-	enterGreaterThanEqualsExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#greaterThanEqualsExpression.
-	exitGreaterThanEqualsExpression(ctx) {
 	}
 
 
@@ -248,21 +194,21 @@ export default class UCBLogoListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by UCBLogoParser#equalsExpression.
-	enterEqualsExpression(ctx) {
+	// Enter a parse tree produced by UCBLogoParser#mulDivExpression.
+	enterMulDivExpression(ctx) {
 	}
 
-	// Exit a parse tree produced by UCBLogoParser#equalsExpression.
-	exitEqualsExpression(ctx) {
+	// Exit a parse tree produced by UCBLogoParser#mulDivExpression.
+	exitMulDivExpression(ctx) {
 	}
 
 
-	// Enter a parse tree produced by UCBLogoParser#subtractionExpression.
-	enterSubtractionExpression(ctx) {
+	// Enter a parse tree produced by UCBLogoParser#addSubExpression.
+	enterAddSubExpression(ctx) {
 	}
 
-	// Exit a parse tree produced by UCBLogoParser#subtractionExpression.
-	exitSubtractionExpression(ctx) {
+	// Exit a parse tree produced by UCBLogoParser#addSubExpression.
+	exitAddSubExpression(ctx) {
 	}
 
 
@@ -272,15 +218,6 @@ export default class UCBLogoListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by UCBLogoParser#procedureCallExpression.
 	exitProcedureCallExpression(ctx) {
-	}
-
-
-	// Enter a parse tree produced by UCBLogoParser#lessThanExpression.
-	enterLessThanExpression(ctx) {
-	}
-
-	// Exit a parse tree produced by UCBLogoParser#lessThanExpression.
-	exitLessThanExpression(ctx) {
 	}
 
 

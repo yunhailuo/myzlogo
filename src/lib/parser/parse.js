@@ -112,54 +112,52 @@ class ProcedureResolver extends UCBLogoListener {
         ctx.js = ctx.NUMBER().getText();
     }
 
-    exitMultiplyExpression(ctx) {
+    exitMulDivExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} * ${bJs})`;
+        switch (ctx.op.type) {
+            case UCBLogoParser.MULT:
+                ctx.js = `(${aJs} * ${bJs})`;
+                break;
+            case UCBLogoParser.DIV:
+                ctx.js = `(${aJs} / ${bJs})`;
+                break;
+        }
     }
 
-    exitDivideExpression(ctx) {
+    exitAddSubExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} / ${bJs})`;
+        switch (ctx.op.type) {
+            case UCBLogoParser.PLUS:
+                ctx.js = `(${aJs} + ${bJs})`;
+                break;
+            case UCBLogoParser.MINUS:
+                ctx.js = `(${aJs} - ${bJs})`;
+                break;
+        }
     }
 
-    exitAdditionExpression(ctx) {
+    exitComparisonExpression(ctx) {
         const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} + ${bJs})`;
-    }
-
-    exitSubtractionExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} - ${bJs})`;
-    }
-
-    exitLessThanExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} < ${bJs})`;
-    }
-
-    exitGreaterThanExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} > ${bJs})`;
-    }
-
-    exitLessThanEqualsExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} <= ${bJs})`;
-    }
-
-    exitGreaterThanEqualsExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} >= ${bJs})`;
-    }
-
-    exitEqualsExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} == ${bJs})`;
-    }
-
-    exitNotEqualsExpressionExpression(ctx) {
-        const [aJs, bJs] = Object.values(ctx.expression()).map((e) => e.js);
-        ctx.js = `(${aJs} != ${bJs})`;
+        switch (ctx.op.type) {
+            case UCBLogoParser.LT:
+                ctx.js = `(${aJs} < ${bJs})`;
+                break;
+            case UCBLogoParser.GT:
+                ctx.js = `(${aJs} > ${bJs})`;
+                break;
+            case UCBLogoParser.EQ:
+                ctx.js = `(${aJs} == ${bJs})`;
+                break;
+            case UCBLogoParser.LT_EQ:
+                ctx.js = `(${aJs} <= ${bJs})`;
+                break;
+            case UCBLogoParser.GT_EQ:
+                ctx.js = `(${aJs} >= ${bJs})`;
+                break;
+            case UCBLogoParser.NOT_EQ:
+                ctx.js = `(${aJs} != ${bJs})`;
+                break;
+        }
     }
 }
 

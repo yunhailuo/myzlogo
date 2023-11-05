@@ -2,7 +2,7 @@
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import UCBLogoListener from './UCBLogoListener.js';
-const serializedATN = [4,1,26,181,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
+const serializedATN = [4,1,26,160,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,
 1,0,5,0,28,8,0,10,0,12,0,31,9,0,1,0,1,0,1,1,1,1,1,1,1,1,3,1,39,8,1,1,2,1,
 2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,5,4,56,8,4,10,4,12,
@@ -11,55 +11,47 @@ const serializedATN = [4,1,26,181,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 7,12,7,89,9,7,1,7,1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,5,9,101,8,9,10,9,12,
 9,104,9,9,1,9,1,9,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,
 1,10,1,10,1,10,1,10,1,10,3,10,124,8,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,
-1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,
-10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,5,10,156,8,10,10,10,12,10,159,
-9,10,1,11,1,11,1,11,5,11,164,8,11,10,11,12,11,167,9,11,1,11,1,11,1,12,1,
-12,1,12,5,12,174,8,12,10,12,12,12,177,9,12,1,12,1,12,1,12,0,1,20,13,0,2,
-4,6,8,10,12,14,16,18,20,22,24,0,2,1,0,4,4,1,0,8,9,202,0,29,1,0,0,0,2,38,
-1,0,0,0,4,40,1,0,0,0,6,46,1,0,0,0,8,52,1,0,0,0,10,75,1,0,0,0,12,79,1,0,0,
-0,14,81,1,0,0,0,16,92,1,0,0,0,18,102,1,0,0,0,20,123,1,0,0,0,22,160,1,0,0,
-0,24,170,1,0,0,0,26,28,3,2,1,0,27,26,1,0,0,0,28,31,1,0,0,0,29,27,1,0,0,0,
-29,30,1,0,0,0,30,32,1,0,0,0,31,29,1,0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,
-39,3,4,2,0,35,39,3,6,3,0,36,39,3,14,7,0,37,39,3,16,8,0,38,34,1,0,0,0,38,
-35,1,0,0,0,38,36,1,0,0,0,38,37,1,0,0,0,39,3,1,0,0,0,40,41,5,3,0,0,41,42,
-5,25,0,0,42,43,3,8,4,0,43,44,3,10,5,0,44,45,6,2,-1,0,45,5,1,0,0,0,46,47,
-5,5,0,0,47,48,5,25,0,0,48,49,3,8,4,0,49,50,3,10,5,0,50,51,6,3,-1,0,51,7,
-1,0,0,0,52,57,6,4,-1,0,53,54,5,24,0,0,54,56,6,4,-1,0,55,53,1,0,0,0,56,59,
-1,0,0,0,57,55,1,0,0,0,57,58,1,0,0,0,58,9,1,0,0,0,59,57,1,0,0,0,60,64,4,5,
-0,0,61,63,3,12,6,0,62,61,1,0,0,0,63,66,1,0,0,0,64,62,1,0,0,0,64,65,1,0,0,
-0,65,67,1,0,0,0,66,64,1,0,0,0,67,76,5,4,0,0,68,70,8,0,0,0,69,68,1,0,0,0,
-70,73,1,0,0,0,71,69,1,0,0,0,71,72,1,0,0,0,72,74,1,0,0,0,73,71,1,0,0,0,74,
-76,5,4,0,0,75,60,1,0,0,0,75,71,1,0,0,0,76,11,1,0,0,0,77,80,3,14,7,0,78,80,
-3,16,8,0,79,77,1,0,0,0,79,78,1,0,0,0,80,13,1,0,0,0,81,82,5,1,0,0,82,83,4,
-7,1,0,83,87,5,25,0,0,84,86,3,20,10,0,85,84,1,0,0,0,86,89,1,0,0,0,87,85,1,
-0,0,0,87,88,1,0,0,0,88,90,1,0,0,0,89,87,1,0,0,0,90,91,5,2,0,0,91,15,1,0,
-0,0,92,93,4,8,2,0,93,94,5,25,0,0,94,95,3,18,9,0,95,17,1,0,0,0,96,97,4,9,
-3,1,97,98,3,20,10,0,98,99,6,9,-1,0,99,101,1,0,0,0,100,96,1,0,0,0,101,104,
-1,0,0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,104,102,1,0,0,0,
-105,106,6,9,-1,0,106,19,1,0,0,0,107,108,6,10,-1,0,108,109,5,12,0,0,109,124,
-3,20,10,21,110,124,3,14,7,0,111,124,3,16,8,0,112,113,5,1,0,0,113,114,3,20,
+1,10,1,10,5,10,135,8,10,10,10,12,10,138,9,10,1,11,1,11,1,11,5,11,143,8,11,
+10,11,12,11,146,9,11,1,11,1,11,1,12,1,12,1,12,5,12,153,8,12,10,12,12,12,
+156,9,12,1,12,1,12,1,12,0,1,20,13,0,2,4,6,8,10,12,14,16,18,20,22,24,0,5,
+1,0,4,4,1,0,14,15,1,0,12,13,1,0,16,21,1,0,8,9,174,0,29,1,0,0,0,2,38,1,0,
+0,0,4,40,1,0,0,0,6,46,1,0,0,0,8,52,1,0,0,0,10,75,1,0,0,0,12,79,1,0,0,0,14,
+81,1,0,0,0,16,92,1,0,0,0,18,102,1,0,0,0,20,123,1,0,0,0,22,139,1,0,0,0,24,
+149,1,0,0,0,26,28,3,2,1,0,27,26,1,0,0,0,28,31,1,0,0,0,29,27,1,0,0,0,29,30,
+1,0,0,0,30,32,1,0,0,0,31,29,1,0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,39,3,4,
+2,0,35,39,3,6,3,0,36,39,3,14,7,0,37,39,3,16,8,0,38,34,1,0,0,0,38,35,1,0,
+0,0,38,36,1,0,0,0,38,37,1,0,0,0,39,3,1,0,0,0,40,41,5,3,0,0,41,42,5,25,0,
+0,42,43,3,8,4,0,43,44,3,10,5,0,44,45,6,2,-1,0,45,5,1,0,0,0,46,47,5,5,0,0,
+47,48,5,25,0,0,48,49,3,8,4,0,49,50,3,10,5,0,50,51,6,3,-1,0,51,7,1,0,0,0,
+52,57,6,4,-1,0,53,54,5,24,0,0,54,56,6,4,-1,0,55,53,1,0,0,0,56,59,1,0,0,0,
+57,55,1,0,0,0,57,58,1,0,0,0,58,9,1,0,0,0,59,57,1,0,0,0,60,64,4,5,0,0,61,
+63,3,12,6,0,62,61,1,0,0,0,63,66,1,0,0,0,64,62,1,0,0,0,64,65,1,0,0,0,65,67,
+1,0,0,0,66,64,1,0,0,0,67,76,5,4,0,0,68,70,8,0,0,0,69,68,1,0,0,0,70,73,1,
+0,0,0,71,69,1,0,0,0,71,72,1,0,0,0,72,74,1,0,0,0,73,71,1,0,0,0,74,76,5,4,
+0,0,75,60,1,0,0,0,75,71,1,0,0,0,76,11,1,0,0,0,77,80,3,14,7,0,78,80,3,16,
+8,0,79,77,1,0,0,0,79,78,1,0,0,0,80,13,1,0,0,0,81,82,5,1,0,0,82,83,4,7,1,
+0,83,87,5,25,0,0,84,86,3,20,10,0,85,84,1,0,0,0,86,89,1,0,0,0,87,85,1,0,0,
+0,87,88,1,0,0,0,88,90,1,0,0,0,89,87,1,0,0,0,90,91,5,2,0,0,91,15,1,0,0,0,
+92,93,4,8,2,0,93,94,5,25,0,0,94,95,3,18,9,0,95,17,1,0,0,0,96,97,4,9,3,1,
+97,98,3,20,10,0,98,99,6,9,-1,0,99,101,1,0,0,0,100,96,1,0,0,0,101,104,1,0,
+0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,104,102,1,0,0,0,105,
+106,6,9,-1,0,106,19,1,0,0,0,107,108,6,10,-1,0,108,109,5,12,0,0,109,124,3,
+20,10,14,110,124,3,14,7,0,111,124,3,16,8,0,112,113,5,1,0,0,113,114,3,20,
 10,0,114,115,5,2,0,0,115,124,1,0,0,0,116,124,3,22,11,0,117,124,3,24,12,0,
 118,124,5,6,0,0,119,124,5,22,0,0,120,124,5,23,0,0,121,124,5,24,0,0,122,124,
 5,25,0,0,123,107,1,0,0,0,123,110,1,0,0,0,123,111,1,0,0,0,123,112,1,0,0,0,
 123,116,1,0,0,0,123,117,1,0,0,0,123,118,1,0,0,0,123,119,1,0,0,0,123,120,
-1,0,0,0,123,121,1,0,0,0,123,122,1,0,0,0,124,157,1,0,0,0,125,126,10,10,0,
-0,126,127,5,14,0,0,127,156,3,20,10,11,128,129,10,9,0,0,129,130,5,15,0,0,
-130,156,3,20,10,10,131,132,10,8,0,0,132,133,5,13,0,0,133,156,3,20,10,9,134,
-135,10,7,0,0,135,136,5,12,0,0,136,156,3,20,10,8,137,138,10,6,0,0,138,139,
-5,16,0,0,139,156,3,20,10,7,140,141,10,5,0,0,141,142,5,17,0,0,142,156,3,20,
-10,6,143,144,10,4,0,0,144,145,5,19,0,0,145,156,3,20,10,5,146,147,10,3,0,
-0,147,148,5,20,0,0,148,156,3,20,10,4,149,150,10,2,0,0,150,151,5,18,0,0,151,
-156,3,20,10,3,152,153,10,1,0,0,153,154,5,21,0,0,154,156,3,20,10,2,155,125,
-1,0,0,0,155,128,1,0,0,0,155,131,1,0,0,0,155,134,1,0,0,0,155,137,1,0,0,0,
-155,140,1,0,0,0,155,143,1,0,0,0,155,146,1,0,0,0,155,149,1,0,0,0,155,152,
-1,0,0,0,156,159,1,0,0,0,157,155,1,0,0,0,157,158,1,0,0,0,158,21,1,0,0,0,159,
-157,1,0,0,0,160,165,5,8,0,0,161,164,8,1,0,0,162,164,3,22,11,0,163,161,1,
-0,0,0,163,162,1,0,0,0,164,167,1,0,0,0,165,163,1,0,0,0,165,166,1,0,0,0,166,
-168,1,0,0,0,167,165,1,0,0,0,168,169,5,9,0,0,169,23,1,0,0,0,170,175,5,10,
-0,0,171,174,5,6,0,0,172,174,3,24,12,0,173,171,1,0,0,0,173,172,1,0,0,0,174,
-177,1,0,0,0,175,173,1,0,0,0,175,176,1,0,0,0,176,178,1,0,0,0,177,175,1,0,
-0,0,178,179,5,11,0,0,179,25,1,0,0,0,16,29,38,57,64,71,75,79,87,102,123,155,
-157,163,165,173,175];
+1,0,0,0,123,121,1,0,0,0,123,122,1,0,0,0,124,136,1,0,0,0,125,126,10,3,0,0,
+126,127,7,1,0,0,127,135,3,20,10,4,128,129,10,2,0,0,129,130,7,2,0,0,130,135,
+3,20,10,3,131,132,10,1,0,0,132,133,7,3,0,0,133,135,3,20,10,2,134,125,1,0,
+0,0,134,128,1,0,0,0,134,131,1,0,0,0,135,138,1,0,0,0,136,134,1,0,0,0,136,
+137,1,0,0,0,137,21,1,0,0,0,138,136,1,0,0,0,139,144,5,8,0,0,140,143,8,4,0,
+0,141,143,3,22,11,0,142,140,1,0,0,0,142,141,1,0,0,0,143,146,1,0,0,0,144,
+142,1,0,0,0,144,145,1,0,0,0,145,147,1,0,0,0,146,144,1,0,0,0,147,148,5,9,
+0,0,148,23,1,0,0,0,149,154,5,10,0,0,150,153,5,6,0,0,151,153,3,24,12,0,152,
+150,1,0,0,0,152,151,1,0,0,0,153,156,1,0,0,0,154,152,1,0,0,0,154,155,1,0,
+0,0,155,157,1,0,0,0,156,154,1,0,0,0,157,158,5,11,0,0,158,25,1,0,0,0,16,29,
+38,57,64,71,75,79,87,102,123,134,136,142,144,152,154];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -578,24 +570,10 @@ export default class UCBLogoParser extends antlr4.Parser {
     expression_sempred(localctx, predIndex) {
     	switch(predIndex) {
     		case 4:
-    			return this.precpred(this._ctx, 10);
-    		case 5:
-    			return this.precpred(this._ctx, 9);
-    		case 6:
-    			return this.precpred(this._ctx, 8);
-    		case 7:
-    			return this.precpred(this._ctx, 7);
-    		case 8:
-    			return this.precpred(this._ctx, 6);
-    		case 9:
-    			return this.precpred(this._ctx, 5);
-    		case 10:
-    			return this.precpred(this._ctx, 4);
-    		case 11:
     			return this.precpred(this._ctx, 3);
-    		case 12:
+    		case 5:
     			return this.precpred(this._ctx, 2);
-    		case 13:
+    		case 6:
     			return this.precpred(this._ctx, 1);
     		default:
     			throw "No predicate with index:" + predIndex;
@@ -1030,6 +1008,7 @@ export default class UCBLogoParser extends antlr4.Parser {
 	    let _prevctx = localctx;
 	    const _startState = 20;
 	    this.enterRecursionRule(localctx, 20, UCBLogoParser.RULE_expression, _p);
+	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 123;
@@ -1044,7 +1023,7 @@ export default class UCBLogoParser extends antlr4.Parser {
 	            this.state = 108;
 	            this.match(UCBLogoParser.MINUS);
 	            this.state = 109;
-	            this.expression(21);
+	            this.expression(14);
 	            break;
 
 	        case 2:
@@ -1133,7 +1112,7 @@ export default class UCBLogoParser extends antlr4.Parser {
 
 	        }
 	        this._ctx.stop = this._input.LT(-1);
-	        this.state = 157;
+	        this.state = 136;
 	        this._errHandler.sync(this);
 	        var _alt = this._interp.adaptivePredict(this._input,11,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
@@ -1142,143 +1121,76 @@ export default class UCBLogoParser extends antlr4.Parser {
 	                    this.triggerExitRuleEvent();
 	                }
 	                _prevctx = localctx;
-	                this.state = 155;
+	                this.state = 134;
 	                this._errHandler.sync(this);
 	                var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
 	                switch(la_) {
 	                case 1:
-	                    localctx = new MultiplyExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
+	                    localctx = new MulDivExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
 	                    this.state = 125;
-	                    if (!( this.precpred(this._ctx, 10))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 10)");
-	                    }
-	                    this.state = 126;
-	                    this.match(UCBLogoParser.MULT);
-	                    this.state = 127;
-	                    this.expression(11);
-	                    break;
-
-	                case 2:
-	                    localctx = new DivideExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 128;
-	                    if (!( this.precpred(this._ctx, 9))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 9)");
-	                    }
-	                    this.state = 129;
-	                    this.match(UCBLogoParser.DIV);
-	                    this.state = 130;
-	                    this.expression(10);
-	                    break;
-
-	                case 3:
-	                    localctx = new AdditionExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 131;
-	                    if (!( this.precpred(this._ctx, 8))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 8)");
-	                    }
-	                    this.state = 132;
-	                    this.match(UCBLogoParser.PLUS);
-	                    this.state = 133;
-	                    this.expression(9);
-	                    break;
-
-	                case 4:
-	                    localctx = new SubtractionExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 134;
-	                    if (!( this.precpred(this._ctx, 7))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
-	                    }
-	                    this.state = 135;
-	                    this.match(UCBLogoParser.MINUS);
-	                    this.state = 136;
-	                    this.expression(8);
-	                    break;
-
-	                case 5:
-	                    localctx = new LessThanExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 137;
-	                    if (!( this.precpred(this._ctx, 6))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 6)");
-	                    }
-	                    this.state = 138;
-	                    this.match(UCBLogoParser.LT);
-	                    this.state = 139;
-	                    this.expression(7);
-	                    break;
-
-	                case 6:
-	                    localctx = new GreaterThanExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 140;
-	                    if (!( this.precpred(this._ctx, 5))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
-	                    }
-	                    this.state = 141;
-	                    this.match(UCBLogoParser.GT);
-	                    this.state = 142;
-	                    this.expression(6);
-	                    break;
-
-	                case 7:
-	                    localctx = new LessThanEqualsExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 143;
-	                    if (!( this.precpred(this._ctx, 4))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 4)");
-	                    }
-	                    this.state = 144;
-	                    this.match(UCBLogoParser.LT_EQ);
-	                    this.state = 145;
-	                    this.expression(5);
-	                    break;
-
-	                case 8:
-	                    localctx = new GreaterThanEqualsExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
-	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 146;
 	                    if (!( this.precpred(this._ctx, 3))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
 	                    }
-	                    this.state = 147;
-	                    this.match(UCBLogoParser.GT_EQ);
-	                    this.state = 148;
+	                    this.state = 126;
+	                    localctx.op = this._input.LT(1);
+	                    _la = this._input.LA(1);
+	                    if(!(_la===14 || _la===15)) {
+	                        localctx.op = this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this._errHandler.reportMatch(this);
+	                        this.consume();
+	                    }
+	                    this.state = 127;
 	                    this.expression(4);
 	                    break;
 
-	                case 9:
-	                    localctx = new EqualsExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
+	                case 2:
+	                    localctx = new AddSubExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 149;
+	                    this.state = 128;
 	                    if (!( this.precpred(this._ctx, 2))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 2)");
 	                    }
-	                    this.state = 150;
-	                    this.match(UCBLogoParser.EQ);
-	                    this.state = 151;
+	                    this.state = 129;
+	                    localctx.op = this._input.LT(1);
+	                    _la = this._input.LA(1);
+	                    if(!(_la===12 || _la===13)) {
+	                        localctx.op = this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this._errHandler.reportMatch(this);
+	                        this.consume();
+	                    }
+	                    this.state = 130;
 	                    this.expression(3);
 	                    break;
 
-	                case 10:
-	                    localctx = new NotEqualsExpressionExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
+	                case 3:
+	                    localctx = new ComparisonExpressionContext(this, new ExpressionContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, UCBLogoParser.RULE_expression);
-	                    this.state = 152;
+	                    this.state = 131;
 	                    if (!( this.precpred(this._ctx, 1))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 1)");
 	                    }
-	                    this.state = 153;
-	                    this.match(UCBLogoParser.NOT_EQ);
-	                    this.state = 154;
+	                    this.state = 132;
+	                    localctx.op = this._input.LT(1);
+	                    _la = this._input.LA(1);
+	                    if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 4128768) !== 0))) {
+	                        localctx.op = this._errHandler.recoverInline(this);
+	                    }
+	                    else {
+	                    	this._errHandler.reportMatch(this);
+	                        this.consume();
+	                    }
+	                    this.state = 133;
 	                    this.expression(2);
 	                    break;
 
 	                } 
 	            }
-	            this.state = 159;
+	            this.state = 138;
 	            this._errHandler.sync(this);
 	            _alt = this._interp.adaptivePredict(this._input,11,this._ctx);
 	        }
@@ -1305,13 +1217,13 @@ export default class UCBLogoParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 160;
+	        this.state = 139;
 	        this.match(UCBLogoParser.OPEN_ARRAY);
-	        this.state = 165;
+	        this.state = 144;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 134217214) !== 0)) {
-	            this.state = 163;
+	            this.state = 142;
 	            this._errHandler.sync(this);
 	            switch(this._input.LA(1)) {
 	            case 1:
@@ -1338,7 +1250,7 @@ export default class UCBLogoParser extends antlr4.Parser {
 	            case 24:
 	            case 25:
 	            case 26:
-	                this.state = 161;
+	                this.state = 140;
 	                _la = this._input.LA(1);
 	                if(_la<=0 || _la===8 || _la===9) {
 	                this._errHandler.recoverInline(this);
@@ -1349,17 +1261,17 @@ export default class UCBLogoParser extends antlr4.Parser {
 	                }
 	                break;
 	            case 8:
-	                this.state = 162;
+	                this.state = 141;
 	                this.array_();
 	                break;
 	            default:
 	                throw new antlr4.error.NoViableAltException(this);
 	            }
-	            this.state = 167;
+	            this.state = 146;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 168;
+	        this.state = 147;
 	        this.match(UCBLogoParser.CLOSE_ARRAY);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -1383,31 +1295,31 @@ export default class UCBLogoParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 170;
+	        this.state = 149;
 	        this.match(UCBLogoParser.OPEN_LIST);
-	        this.state = 175;
+	        this.state = 154;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        while(_la===6 || _la===10) {
-	            this.state = 173;
+	            this.state = 152;
 	            this._errHandler.sync(this);
 	            switch(this._input.LA(1)) {
 	            case 6:
-	                this.state = 171;
+	                this.state = 150;
 	                this.match(UCBLogoParser.WORD);
 	                break;
 	            case 10:
-	                this.state = 172;
+	                this.state = 151;
 	                this.list_();
 	                break;
 	            default:
 	                throw new antlr4.error.NoViableAltException(this);
 	            }
-	            this.state = 177;
+	            this.state = 156;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 178;
+	        this.state = 157;
 	        this.match(UCBLogoParser.CLOSE_LIST);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -2040,45 +1952,6 @@ class ExpressionContext extends antlr4.ParserRuleContext {
 }
 
 
-class NotEqualsExpressionExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	NOT_EQ() {
-	    return this.getToken(UCBLogoParser.NOT_EQ, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterNotEqualsExpressionExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitNotEqualsExpressionExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.NotEqualsExpressionExpressionContext = NotEqualsExpressionExpressionContext;
-
 class ArrayExpressionContext extends ExpressionContext {
 
     constructor(parser, ctx) {
@@ -2106,45 +1979,6 @@ class ArrayExpressionContext extends ExpressionContext {
 }
 
 UCBLogoParser.ArrayExpressionContext = ArrayExpressionContext;
-
-class AdditionExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	PLUS() {
-	    return this.getToken(UCBLogoParser.PLUS, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterAdditionExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitAdditionExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.AdditionExpressionContext = AdditionExpressionContext;
 
 class WordExpressionContext extends ExpressionContext {
 
@@ -2230,10 +2064,11 @@ class ParensExpressionContext extends ExpressionContext {
 
 UCBLogoParser.ParensExpressionContext = ParensExpressionContext;
 
-class MultiplyExpressionContext extends ExpressionContext {
+class ComparisonExpressionContext extends ExpressionContext {
 
     constructor(parser, ctx) {
         super(parser);
+        this.op = null;;
         super.copyFrom(ctx);
     }
 
@@ -2248,65 +2083,46 @@ class MultiplyExpressionContext extends ExpressionContext {
 	    }
 	};
 
-	MULT() {
-	    return this.getToken(UCBLogoParser.MULT, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterMultiplyExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitMultiplyExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.MultiplyExpressionContext = MultiplyExpressionContext;
-
-class GreaterThanExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
+	LT() {
+	    return this.getToken(UCBLogoParser.LT, 0);
 	};
 
 	GT() {
 	    return this.getToken(UCBLogoParser.GT, 0);
 	};
 
+	LT_EQ() {
+	    return this.getToken(UCBLogoParser.LT_EQ, 0);
+	};
+
+	GT_EQ() {
+	    return this.getToken(UCBLogoParser.GT_EQ, 0);
+	};
+
+	EQ() {
+	    return this.getToken(UCBLogoParser.EQ, 0);
+	};
+
+	NOT_EQ() {
+	    return this.getToken(UCBLogoParser.NOT_EQ, 0);
+	};
+
 	enterRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterGreaterThanExpression(this);
+	        listener.enterComparisonExpression(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitGreaterThanExpression(this);
+	        listener.exitComparisonExpression(this);
 		}
 	}
 
 
 }
 
-UCBLogoParser.GreaterThanExpressionContext = GreaterThanExpressionContext;
+UCBLogoParser.ComparisonExpressionContext = ComparisonExpressionContext;
 
 class VariableExpressionContext extends ExpressionContext {
 
@@ -2335,123 +2151,6 @@ class VariableExpressionContext extends ExpressionContext {
 }
 
 UCBLogoParser.VariableExpressionContext = VariableExpressionContext;
-
-class DivideExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	DIV() {
-	    return this.getToken(UCBLogoParser.DIV, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterDivideExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitDivideExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.DivideExpressionContext = DivideExpressionContext;
-
-class LessThanEqualsExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	LT_EQ() {
-	    return this.getToken(UCBLogoParser.LT_EQ, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterLessThanEqualsExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitLessThanEqualsExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.LessThanEqualsExpressionContext = LessThanEqualsExpressionContext;
-
-class GreaterThanEqualsExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	GT_EQ() {
-	    return this.getToken(UCBLogoParser.GT_EQ, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterGreaterThanEqualsExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitGreaterThanEqualsExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.GreaterThanEqualsExpressionContext = GreaterThanEqualsExpressionContext;
 
 class UnaryMinusExpressionContext extends ExpressionContext {
 
@@ -2513,10 +2212,11 @@ class QuotedWordExpressionContext extends ExpressionContext {
 
 UCBLogoParser.QuotedWordExpressionContext = QuotedWordExpressionContext;
 
-class EqualsExpressionContext extends ExpressionContext {
+class MulDivExpressionContext extends ExpressionContext {
 
     constructor(parser, ctx) {
         super(parser);
+        this.op = null;;
         super.copyFrom(ctx);
     }
 
@@ -2531,31 +2231,36 @@ class EqualsExpressionContext extends ExpressionContext {
 	    }
 	};
 
-	EQ() {
-	    return this.getToken(UCBLogoParser.EQ, 0);
+	MULT() {
+	    return this.getToken(UCBLogoParser.MULT, 0);
+	};
+
+	DIV() {
+	    return this.getToken(UCBLogoParser.DIV, 0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterEqualsExpression(this);
+	        listener.enterMulDivExpression(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitEqualsExpression(this);
+	        listener.exitMulDivExpression(this);
 		}
 	}
 
 
 }
 
-UCBLogoParser.EqualsExpressionContext = EqualsExpressionContext;
+UCBLogoParser.MulDivExpressionContext = MulDivExpressionContext;
 
-class SubtractionExpressionContext extends ExpressionContext {
+class AddSubExpressionContext extends ExpressionContext {
 
     constructor(parser, ctx) {
         super(parser);
+        this.op = null;;
         super.copyFrom(ctx);
     }
 
@@ -2568,6 +2273,10 @@ class SubtractionExpressionContext extends ExpressionContext {
 	    } else {
 	        return this.getTypedRuleContext(ExpressionContext,i);
 	    }
+	};
+
+	PLUS() {
+	    return this.getToken(UCBLogoParser.PLUS, 0);
 	};
 
 	MINUS() {
@@ -2576,20 +2285,20 @@ class SubtractionExpressionContext extends ExpressionContext {
 
 	enterRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterSubtractionExpression(this);
+	        listener.enterAddSubExpression(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitSubtractionExpression(this);
+	        listener.exitAddSubExpression(this);
 		}
 	}
 
 
 }
 
-UCBLogoParser.SubtractionExpressionContext = SubtractionExpressionContext;
+UCBLogoParser.AddSubExpressionContext = AddSubExpressionContext;
 
 class ProcedureCallExpressionContext extends ExpressionContext {
 
@@ -2618,45 +2327,6 @@ class ProcedureCallExpressionContext extends ExpressionContext {
 }
 
 UCBLogoParser.ProcedureCallExpressionContext = ProcedureCallExpressionContext;
-
-class LessThanExpressionContext extends ExpressionContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        super.copyFrom(ctx);
-    }
-
-	expression = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExpressionContext);
-	    } else {
-	        return this.getTypedRuleContext(ExpressionContext,i);
-	    }
-	};
-
-	LT() {
-	    return this.getToken(UCBLogoParser.LT, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.enterLessThanExpression(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof UCBLogoListener ) {
-	        listener.exitLessThanExpression(this);
-		}
-	}
-
-
-}
-
-UCBLogoParser.LessThanExpressionContext = LessThanExpressionContext;
 
 class ProcedureCallExtraInputContext extends ExpressionContext {
 
