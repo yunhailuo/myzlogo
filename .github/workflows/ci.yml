@@ -6,10 +6,8 @@ name: CI
 #############################
 on:
   push:
-    branches-ignore: [main]  # main CI will be triggered via CD
   pull_request:
     branches: [master, main]
-  workflow_call:
 
 ###############
 # Set the Job #

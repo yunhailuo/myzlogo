@@ -1,6 +1,6 @@
 # MYZL Logo environment
 
-[![GitHub Super-Linter](https://github.com/yunhailuo/myzlogo/actions/workflows/ci.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Test & Lint](https://github.com/yunhailuo/myzlogo/actions/workflows/ci.yml/badge.svg)](https://github.com/yunhailuo/myzlogo/actions/workflows/ci.yml)
 
 This is a toy environment for [Logo programming language](https://el.media.mit.edu/logo-foundation/what_is_logo/index.html). It's built for my grade 1-2 kids. It's not a full implementation of Logo but designed to match the syntax kids said to have at their school.
 
