@@ -1,24 +1,32 @@
 <script setup>
+import { FitAddon } from "@xterm/addon-fit";
+import { WebglAddon } from "@xterm/addon-webgl";
+import { Terminal } from "@xterm/xterm";
+import "@xterm/xterm/css/xterm.css";
 import { onMounted, ref } from "vue";
 import UCBLogoRunner from "../lib/UCBLogoRunner";
 import IconButton from "./IconButton.vue";
-import IoDownloadIcon from "./IoDownloadIcon.vue";
 import IoCodeDownloadIcon from "./IoCodeDownloadIcon.vue";
+import IoDownloadIcon from "./IoDownloadIcon.vue";
 
 const workspace = ref(null);
 const logoCanvas = ref(null);
 const turtleCanvas = ref(null);
 const logoCmd = ref("");
-const consoleLog = ref("");
+const xtermContainer = ref(null);
+const term = new Terminal({
+    fontFamily: '"Cascadia Code", Menlo, monospace',
+    cursorBlink: true,
+});
 
 const logger = {
     error() {
         console.error(...arguments);
-        consoleLog.value += `\n${[...arguments].join(" ")}`;
+        term.writeln(`\x1B[31m${[...arguments].join(" ")}\x1B[0m\r`);
     },
     log() {
         console.log(...arguments);
-        consoleLog.value += `\n${[...arguments].join(" ")}`;
+        term.writeln(`${[...arguments].join(" ")}\r`);
     },
 };
 
@@ -45,38 +53,47 @@ function downloadCode() {
 }
 
 onMounted(() => {
+    const fitAddon = new FitAddon();
+    term.loadAddon(fitAddon);
+    term.open(xtermContainer.value);
+    fitAddon.fit();
+    term.loadAddon(new WebglAddon());
+    term.write(
+        "Welcome to \x1B[32mM\x1B[33mY\x1B[34mZ\x1B[35mL\x1B[0m Logo!\r\n\r\n"
+    );
     logoRunner.canvases = [
         logoCanvas.value.getContext("2d"),
         turtleCanvas.value.getContext("2d"),
     ];
-    logoCmd.value =
-        "cs " +
-        "bk 45+45\n" +
-        "rt 100 - 10\n" +
-        "fd 9*\t10\n" +
-        "lt 180  /2\n" +
-        "fd (sum 30 30 30)\n" +
-        "\n" +
-        "pu\n" +
-        "forward 90\n" +
-        "pd\n" +
-        "\n" +
-        "fd 90 fd 90 bk 30\n" +
-        "\n" +
-        "pe\n" +
-        "bk 60\n" +
-        "ppt\n" +
-        "\n" +
-        "bk 30\n" +
-        "\n" +
-        "RT 45\n" +
-        "repeat 4 [fd 90 rt 90]\n" +
-        "\n" +
-        "lt 105 fd 90\n" +
-        "lt 120 fd product 90 sin 30\n" +
-        "lt 90 fd product cos 30 90\n" +
-        "seth 180-22.5\n" +
-        "arc (90+22.5)/180*3.14 (cos 30) * 90";
+    logoCmd.value = [
+        "cs pd ppt",
+        "bk 45+45",
+        "rt 100 - 10",
+        "fd 9*\t10",
+        "lt 180  /2",
+        "fd (sum 30 30 30)",
+        "",
+        "pu",
+        "forward 90",
+        "pd",
+        "",
+        "fd 90 fd 90 bk 30",
+        "",
+        "pe",
+        "bk 60",
+        "ppt",
+        "",
+        "bk 30",
+        "",
+        "RT 45",
+        "repeat 4 [fd 90 rt 90]",
+        "",
+        "lt 105 fd 90",
+        "lt 120 fd product 90 sin 30",
+        "lt 90 fd product cos 30 90",
+        "seth 180-22.5",
+        "arc (90+22.5)/180*3.14 (cos 30) * 90",
+    ].join("\n");
 });
 </script>
 
@@ -109,12 +126,7 @@ onMounted(() => {
                 spellcheck="false"
                 @keyup.enter="processAllCmds"
             />
-            <textarea
-                v-model="consoleLog"
-                class="consolelog"
-                spellcheck="false"
-                readonly
-            />
+            <div ref="xtermContainer" class="xterm-container"></div>
         </div>
     </div>
 </template>
@@ -194,7 +206,7 @@ onMounted(() => {
     resize: none;
 }
 
-.consolelog {
+.xterm-container {
     display: block;
     flex-grow: 1;
     flex-shrink: 1;
@@ -206,12 +218,8 @@ onMounted(() => {
     width: 600px;
     max-width: min(100%, 1200px);
     resize: none;
-    padding: 10px;
-    text-align: left;
-    font-size: 1.5em;
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-        serif;
-    color: #1a95e0;
+    padding: 10px 20px;
+    background-color: black;
+    text-align: start;
 }
 </style>

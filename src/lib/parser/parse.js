@@ -3,7 +3,7 @@ import UCBLogoListener from "./UCBLogoListener.js";
 import UCBLogoParser from "./UCBLogoParser.js";
 import antlr4 from "antlr4";
 
-class ProcedureResolver extends UCBLogoListener {
+class UCBLogoResolver extends UCBLogoListener {
     constructor() {
         super();
         this.instructions = [];
@@ -161,14 +161,25 @@ class ProcedureResolver extends UCBLogoListener {
     }
 }
 
+class UCBLogoParserErrorListener extends antlr4.error.ErrorListener {
+    constructor() {
+        super();
+    }
+
+    syntaxError(recognizer, offendingSymbol, line, column, msg) {
+        throw new Error(`line ${line}:${column} ${msg}`);
+    }
+}
+
 export default function parse(input) {
     const chars = new antlr4.InputStream(input);
     const lexer = new UCBLogoLexer(chars);
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new UCBLogoParser(tokens);
+    parser.addErrorListener(new UCBLogoParserErrorListener());
     const tree = parser.ucblogo();
 
-    const procedureResolver = new ProcedureResolver();
-    antlr4.tree.ParseTreeWalker.DEFAULT.walk(procedureResolver, tree);
-    return procedureResolver.instructions;
+    const ucblogoResolver = new UCBLogoResolver();
+    antlr4.tree.ParseTreeWalker.DEFAULT.walk(ucblogoResolver, tree);
+    return ucblogoResolver.instructions;
 }

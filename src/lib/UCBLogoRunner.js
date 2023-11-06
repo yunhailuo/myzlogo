@@ -461,7 +461,14 @@ export default class UCBLogoRunner {
     }
 
     runresult(instructionlist) {
-        const results = parse(instructionlist).map((js) => {
+        let jsTargetCode;
+        try {
+            jsTargetCode = parse(instructionlist);
+        } catch (error) {
+            this.logger.error(error);
+            return;
+        }
+        const results = jsTargetCode.map((js) => {
             console.log(js);
             return Function("logo", `"use strict";${js}`)(this);
         });

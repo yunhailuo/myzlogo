@@ -510,6 +510,7 @@ export default class UCBLogoParser extends antlr4.Parser {
           this.ucblogo();
           // Reset the input stream after having resolved the user defined procedures.
           input.reset();
+          this.reset();
           this.discoveredAllProcedures = true;
 
     }
