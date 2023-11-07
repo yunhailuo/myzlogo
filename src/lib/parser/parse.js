@@ -166,8 +166,17 @@ class UCBLogoParserErrorListener extends antlr4.error.ErrorListener {
         super();
     }
 
-    syntaxError(recognizer, offendingSymbol, line, column, msg) {
-        throw new Error(`line ${line}:${column} ${msg}`);
+    syntaxError(parser, offendingSymbol, line, column, msg) {
+        let errorLine = parser
+            .getInputStream()
+            .tokenSource.inputStream.toString()
+            .split("\n")[line - 1];
+        let { start: start, stop: stop } = offendingSymbol;
+        let err = new Error(`line ${line}:${column} ${msg}`);
+        err.tokenHightligh = `${errorLine}\r\n${" ".repeat(column)}${"^".repeat(
+            Math.abs(stop - start) + 1
+        )}`;
+        throw err;
     }
 }
 

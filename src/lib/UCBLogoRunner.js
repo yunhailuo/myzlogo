@@ -466,6 +466,9 @@ export default class UCBLogoRunner {
             jsTargetCode = parse(instructionlist);
         } catch (error) {
             this.logger.error(error);
+            if (error.tokenHightligh) {
+                this.logger.log(`\x1B[33m${error.tokenHightligh}\x1B[0m`);
+            }
             return;
         }
         const results = jsTargetCode.map((js) => {

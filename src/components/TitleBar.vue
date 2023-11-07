@@ -13,7 +13,7 @@
 
 <style scoped>
 .title {
-    font-size: 2.5em;
+    font-size: 2em;
 }
 .xflip {
     display: inline-block;

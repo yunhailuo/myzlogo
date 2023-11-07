@@ -33,7 +33,7 @@ const logger = {
 const logoRunner = new UCBLogoRunner(null, null, logger);
 
 function processAllCmds() {
-    logoRunner.runresult(logoCmd.value);
+    logoRunner.runresult(logoCmd.value.trimEnd());
 }
 
 function downloadGraph() {
