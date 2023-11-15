@@ -4,6 +4,7 @@ import { ref } from "vue";
 const props = defineProps({
     icon: [String, Object],
     tooltip: { type: String, required: false },
+    buttonRotation: { type: String, required: false, default: "0" },
 });
 
 const showTooltip = ref(false);
@@ -38,6 +39,7 @@ defineEmits(["clicked"]);
     padding: 5px;
     aspect-ratio: 1 / 1;
     position: sticky;
+    z-index: 99;
 }
 
 .iconbutton__button {
@@ -45,6 +47,7 @@ defineEmits(["clicked"]);
     border: none;
     outline: none;
     padding: 0;
+    rotate: v-bind(buttonRotation);
 }
 
 .iconbutton__overlay {
