@@ -3,7 +3,7 @@ import { FitAddon } from "@xterm/addon-fit";
 import { WebglAddon } from "@xterm/addon-webgl";
 import { Terminal } from "@xterm/xterm";
 import "@xterm/xterm/css/xterm.css";
-import { onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import UCBLogoRunner from "../lib/UCBLogoRunner";
 import IconButton from "./icons/IconButton.vue";
 import IoCodeDownloadIcon from "./icons/IoCodeDownloadIcon.vue";
@@ -15,6 +15,7 @@ const logoCanvas = ref(null);
 const turtleCanvas = ref(null);
 const logoCmd = ref("");
 const xtermContainer = ref(null);
+const xtermResizeObserver = ref(null);
 const term = new Terminal({
     fontFamily: '"Cascadia Code", Menlo, monospace',
     cursorBlink: true,
@@ -106,18 +107,34 @@ const logoSampleCode = [
 ].join("\n");
 
 onMounted(() => {
+    term.loadAddon(new WebglAddon());
     const fitAddon = new FitAddon();
     term.loadAddon(fitAddon);
     term.open(xtermContainer.value);
     fitAddon.fit();
-    term.loadAddon(new WebglAddon());
     term.write(
         "Welcome to \x1B[32mM\x1B[33mY\x1B[34mZ\x1B[35mL\x1B[0m Logo!\r\n\r\n"
     );
+
+    var xtermContainerWidth =
+        xtermContainer.value.getBoundingClientRect().width;
+    xtermResizeObserver.value = new ResizeObserver((entries) => {
+        let newWidth = entries[0].contentRect.width;
+        if (xtermContainerWidth != newWidth) {
+            xtermContainerWidth = newWidth;
+            fitAddon.fit();
+        }
+    });
+    xtermResizeObserver.value.observe(xtermContainer.value);
+
     logoRunner.canvases = [
         logoCanvas.value.getContext("2d"),
         turtleCanvas.value.getContext("2d"),
     ];
+});
+
+onBeforeUnmount(() => {
+    xtermResizeObserver.value.unobserve(workspace.value);
 });
 </script>
 
@@ -161,7 +178,9 @@ onMounted(() => {
                 spellcheck="false"
                 @keyup.enter="processAllCmds"
             />
-            <div ref="xtermContainer" class="xterm-container"></div>
+            <div class="xterm-container">
+                <div ref="xtermContainer" class="xterm-container__inner"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -249,11 +268,18 @@ onMounted(() => {
     order: 0;
     box-sizing: border-box;
     min-height: 300px;
+    height: 60vh;
     width: 600px;
     max-width: min(100%, 1200px);
     resize: none;
-    padding: 10px 20px;
+    padding: 10px 1px 10px 20px;
     background-color: black;
     text-align: start;
+}
+
+.xterm-container__inner {
+    box-sizing: content-box;
+    height: 100%;
+    width: 100%;
 }
 </style>
