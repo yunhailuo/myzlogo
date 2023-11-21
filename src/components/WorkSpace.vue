@@ -13,29 +13,107 @@ import IoDownloadIcon from "./icons/IoDownloadIcon.vue";
 const workspace = ref(null);
 const logoCanvas = ref(null);
 const turtleCanvas = ref(null);
-const logoCmd = ref("");
+const codeHistory = ref("");
 const xtermContainer = ref(null);
 const xtermResizeObserver = ref(null);
 const term = new Terminal({
-    fontFamily: '"Cascadia Code", Menlo, monospace',
     cursorBlink: true,
+    fontFamily: '"Cascadia Code", Menlo, monospace',
+    fontSize: "18",
+});
+
+term.cmdCache = "";
+term.prompt = () => {
+    term.write("\r\n? ");
+};
+term.init = () => {
+    term.writeln(
+        [
+            "┌────────────────────────────────────┐",
+            "| Welcome to the \x1B[32mM\x1B[33mY\x1B[34mZ\x1B[35mL\x1B[0m Logo terminal! |",
+            "└────────────────────────────────────┘",
+        ].join("\r\n")
+    );
+    term.prompt();
+};
+term.onData((e) => {
+    switch (e) {
+        case "\u0003": // Ctrl+C
+            term.write("^C");
+            term.prompt();
+            break;
+        case "\r": // Enter
+            if (term.cmdCache.trim() != "") {
+                if (
+                    codeHistory.value &&
+                    codeHistory.value.charAt(codeHistory.value.length - 1) !=
+                        "\n"
+                ) {
+                    codeHistory.value += "\n";
+                }
+                codeHistory.value += `${term.cmdCache}\n`;
+                logoRunner.runresult(term.cmdCache);
+            }
+            term.cmdCache = "";
+            term.prompt();
+            break;
+        case "\u007F": // Backspace (DEL)
+            // Do not delete the prompt
+            if (term._core.buffer.x > 2) {
+                term.write("\b \b");
+                if (term.cmdCache.length > 0) {
+                    term.cmdCache = term.cmdCache.substring(
+                        0,
+                        term.cmdCache.length - 1
+                    );
+                }
+            }
+            break;
+        default: // Print all other characters for demo
+            if (
+                (e >= String.fromCharCode(0x20) &&
+                    e <= String.fromCharCode(0x7e)) ||
+                e >= "\u00a0"
+            ) {
+                term.cmdCache += e;
+                term.write(e);
+            }
+    }
 });
 
 const logger = {
     error() {
         console.error(...arguments);
-        term.writeln(`\x1B[31m${[...arguments].join("\r\n")}\x1B[0m\r`);
+        term.write(
+            `\r\n\x1B[31m${[...arguments]
+                .map((arg) => String(arg).replaceAll("\n", "\r\n"))
+                .join("\r\n")}\x1B[0m`
+        );
     },
     log() {
         console.log(...arguments);
-        term.writeln(`${[...arguments].join("\r\n")}\r`);
+        term.write(
+            `\r\n${[...arguments]
+                .map((arg) => String(arg).replaceAll("\n", "\r\n"))
+                .join("\r\n")}`
+        );
     },
 };
 
 const logoRunner = new UCBLogoRunner(null, null, logger);
 
-function processAllCmds() {
-    logoRunner.runresult(logoCmd.value.trimEnd());
+function rerunHistory() {
+    let commands = codeHistory.value
+        .replace(/\n$/, "")
+        .split("\n")
+        .filter((cmd) => cmd != "");
+    codeHistory.value = "";
+    term.reset();
+    term.init();
+    commands.forEach((line) => {
+        term.paste(`${line}`);
+        term.paste("\r"); // Trigger onData event
+    });
 }
 
 function downloadGraph() {
@@ -46,7 +124,7 @@ function downloadGraph() {
 }
 
 function downloadCode() {
-    const codeBlob = new Blob([logoCmd.value], { type: "text/plain" });
+    const codeBlob = new Blob([codeHistory.value], { type: "text/plain" });
     const downloadLink = document.createElement("a");
     downloadLink.download = "logo_code.txt";
     downloadLink.href = URL.createObjectURL(codeBlob);
@@ -66,7 +144,7 @@ function uploadCode() {
             );
         } else {
             uploadedFile.text().then(
-                (content) => (logoCmd.value = content),
+                (content) => (codeHistory.value = content),
                 (res) => {
                     logger.error(`Fail to load "${uploadedFile.name}": ${res}`);
                 }
@@ -106,15 +184,17 @@ const logoSampleCode = [
     "arc (90+22.5)/180*3.14 (cos 30) * 90",
 ].join("\n");
 
+function loadSampleCode() {
+    codeHistory.value = logoSampleCode;
+}
+
 onMounted(() => {
     term.loadAddon(new WebglAddon());
     const fitAddon = new FitAddon();
     term.loadAddon(fitAddon);
     term.open(xtermContainer.value);
     fitAddon.fit();
-    term.write(
-        "Welcome to \x1B[32mM\x1B[33mY\x1B[34mZ\x1B[35mL\x1B[0m Logo!\r\n\r\n"
-    );
+    term.init();
 
     var xtermContainerWidth =
         xtermContainer.value.getBoundingClientRect().width;
@@ -158,7 +238,7 @@ onBeforeUnmount(() => {
                 buttonRotation="180deg"
             />
             <IconButton
-                @clicked="logoCmd = logoSampleCode"
+                @clicked="loadSampleCode"
                 :icon="IoDocumentText"
                 tooltip="Load samle code"
             />
@@ -172,12 +252,14 @@ onBeforeUnmount(() => {
                 height="900"
                 width="1200"
             />
-            <textarea
-                v-model="logoCmd"
-                class="commands"
-                spellcheck="false"
-                @keyup.enter="processAllCmds"
-            />
+            <fieldset class="code-history">
+                <legend contenteditable="false">Code history</legend>
+                <textarea
+                    v-model="codeHistory"
+                    spellcheck="false"
+                    @keyup.enter="rerunHistory"
+                />
+            </fieldset>
             <div class="xterm-container">
                 <div ref="xtermContainer" class="xterm-container__inner"></div>
             </div>
@@ -243,7 +325,7 @@ onBeforeUnmount(() => {
     z-index: -1;
 }
 
-.commands {
+.code-history {
     display: block;
     flex-grow: 1;
     flex-shrink: 1;
@@ -254,9 +336,21 @@ onBeforeUnmount(() => {
     width: 600px;
     max-width: min(100%, 1200px);
     box-sizing: border-box;
-    padding: 5px;
-    font-size: 2em;
+    padding: 0 5px;
+    font-size: 1.5em;
     resize: none;
+    & > legend {
+        color: #61aeee;
+    }
+    & > textarea {
+        height: calc(100% - 15px);
+        width: 100%;
+        resize: none;
+        background-color: transparent;
+        border: 0px solid transparent;
+        outline: 0px solid transparent;
+        font-size: 1.5em;
+    }
 }
 
 .xterm-container {
@@ -268,11 +362,10 @@ onBeforeUnmount(() => {
     order: 0;
     box-sizing: border-box;
     min-height: 300px;
-    height: 60vh;
     width: 600px;
     max-width: min(100%, 1200px);
     resize: none;
-    padding: 10px 1px 10px 20px;
+    padding: 10px 1px 0 20px;
     background-color: black;
     text-align: start;
 }
