@@ -15,5 +15,5 @@ export default defineConfig({
     alias: {
       "antlr4": "antlr4"
     }
-  }
+  },
 });
