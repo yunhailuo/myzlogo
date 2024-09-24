@@ -8,6 +8,7 @@ import IconButton from "./icons/IconButton.vue";
 import IoCodeDownloadIcon from "./icons/IoCodeDownloadIcon.vue";
 import IoDocumentText from "./icons/IoDocumentText.vue";
 import IoDownloadIcon from "./icons/IoDownloadIcon.vue";
+import ucblogoUrl from '../assets/ucblogo.v3.webc';
 
 const workspace = ref(null);
 const logoCanvas = ref(null);
@@ -414,7 +415,7 @@ onMounted(async () => {
         "../lib/WasmerSDKBundled.js"
     );
 
-    const binary = await fetch("src/lib/ucblogo.v3.webc")
+    const binary = await fetch(ucblogoUrl)
         .then((response) => response.arrayBuffer())
         .then((bytes) => new Uint8Array(bytes));
     await init();
